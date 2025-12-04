@@ -5,14 +5,16 @@ on:
     branches: [develop]
     paths:
       - '**.cs'
-      - '**.csproj'
       - '**.sln'
+      - '**.slnx'
+      - '**.csproj'
   pull_request:
     branches: [develop]
     paths:
       - '**.cs'
-      - '**.csproj'
       - '**.sln'
+      - '**.slnx'
+      - '**.csproj'
   schedule:
     - cron: '0 6 * * 1' # Every Monday at 6:00 AM UTC
 

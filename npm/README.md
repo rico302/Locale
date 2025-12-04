@@ -14,12 +14,15 @@ npm install -g @taiizor/locale-cli
 # pnpm
 pnpm add -g @taiizor/locale-cli
 
-# bun
+# bun (you may need to trust the package for postinstall)
 bun add -g @taiizor/locale-cli
+# If the binary isn't downloaded, run: bun pm trust @taiizor/locale-cli && bun install
 
 # yarn
 yarn global add @taiizor/locale-cli
 ```
+
+> **Note**: If the postinstall script doesn't run (common with bun or when using `--ignore-scripts`), the CLI will automatically attempt to download the binary on first run.
 
 ## Usage
 
@@ -99,6 +102,30 @@ If you have .NET SDK installed, you can also use:
 ```bash
 dotnet tool install -g Locale.CLI
 ```
+
+## Troubleshooting
+
+### Binary not found after installation
+
+If you see "Locale CLI binary not found" error:
+
+1. **For bun users**: Trust the package and reinstall:
+   ```bash
+   bun pm trust @taiizor/locale-cli
+   bun install
+   ```
+
+2. **For npm/pnpm users**: Try reinstalling without ignore-scripts:
+   ```bash
+   npm install -g @taiizor/locale-cli
+   ```
+
+3. **Alternative**: Use the .NET CLI tool:
+   ```bash
+   dotnet tool install -g Locale.CLI
+   ```
+
+4. **Manual download**: Download the binary for your platform from [GitHub Releases](https://github.com/Taiizor/Locale/releases) and extract it to the package's `bin/<platform>` directory.
 
 ## Documentation
 

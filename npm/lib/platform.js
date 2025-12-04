@@ -80,7 +80,6 @@ export function getBinaryPath(rootDir) {
  */
 export function getDownloadUrl(version) {
   const { rid } = getPlatformInfo();
-  const filename = getBinaryFilename();
 
   // GitHub Releases URL pattern
   return `https://github.com/Taiizor/Locale/releases/download/v${version}/locale-${rid}.zip`;
