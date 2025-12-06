@@ -65,7 +65,7 @@ internal static class PathHelper
     public static string GenerateTargetPath(string sourceFilePath, string inputPath, string outputPath,
         string sourceCulture, string targetCulture)
     {
-        string fileName = Path.GetFileName(sourceFilePath);
+        //string fileName = Path.GetFileName(sourceFilePath);
         string extension = GetExtension(sourceFilePath);
         string nameWithoutExt = GetFileNameWithoutExtension(sourceFilePath);
 

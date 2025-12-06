@@ -99,7 +99,7 @@ public sealed class CheckService(FormatRegistry registry)
 
         foreach (LocalizationFile file in files)
         {
-            CheckFile(file, rules, options, report);
+            CheckFile(file, rules, report);
         }
 
         // Cross-file checks
@@ -125,12 +125,12 @@ public sealed class CheckService(FormatRegistry registry)
         CheckReport report = new();
         List<string> rules = options.Rules.Count > 0 ? options.Rules : [.. CheckRules.All];
 
-        CheckFile(file, rules, options, report);
+        CheckFile(file, rules, report);
 
         return report;
     }
 
-    private void CheckFile(LocalizationFile file, List<string> rules, CheckOptions options, CheckReport report)
+    private void CheckFile(LocalizationFile file, List<string> rules, CheckReport report)
     {
         if (rules.Contains(CheckRules.NoEmptyValues))
         {
