@@ -4,13 +4,14 @@
 
 Accepted
 
-Date: 2024-12-06
+Date: 2025-12-06
 
 ## Context
 
 The Locale project needs to support multiple localization file formats (JSON, YAML, RESX, PO, XLIFF, SRT, VTT, CSV, i18next, Fluent FTL, VB) to serve different ecosystems and use cases. Each format has its own syntax, structure, and semantics.
 
 **Requirements:**
+
 - Support 11+ different localization formats
 - Allow seamless conversion between formats
 - Enable adding new formats without modifying core logic
@@ -18,6 +19,7 @@ The Locale project needs to support multiple localization file formats (JSON, YA
 - Support both reading and writing (except VB resources)
 
 **Constraints:**
+
 - .NET ecosystem (targeting .NET 8, 9, 10)
 - Must be performant for large files (10,000+ entries)
 - Must preserve data integrity during conversions
@@ -33,12 +35,14 @@ Implement a **plugin-based architecture** with:
 4. **Base Implementation**: `LocalizationFormatBase` abstract class providing common functionality
 
 **Key Design Principles:**
+
 - **Separation of Concerns**: Core models separate from format-specific parsing
 - **Open/Closed Principle**: Open for extension (new formats) but closed for modification (core logic)
 - **Single Responsibility**: Each format handler only handles its specific format
 - **Dependency Inversion**: Core depends on abstractions, not concrete format implementations
 
 **Implementation:**
+
 ```csharp
 // Common interface
 public interface ILocalizationFormat
@@ -99,12 +103,14 @@ public sealed class FormatRegistry
 **Description:** Separate API for each format with no common abstraction
 
 **Pros:**
+
 - Maximum flexibility per format
 - No data loss during parsing
 - Format-specific optimizations possible
 - No abstraction overhead
 
 **Cons:**
+
 - No format conversion capability
 - Code duplication across formats
 - Inconsistent APIs
@@ -118,11 +124,13 @@ public sealed class FormatRegistry
 **Description:** Implement N×N conversion functions for all format pairs
 
 **Pros:**
+
 - Optimized conversions per format pair
 - No intermediate representation needed
 - Can preserve format-specific features
 
 **Cons:**
+
 - Exponential growth: 11 formats = 110 conversion functions
 - Massive maintenance burden
 - Code duplication
@@ -136,12 +144,14 @@ public sealed class FormatRegistry
 **Description:** Use an Abstract Syntax Tree representation that captures all format features
 
 **Pros:**
+
 - Can represent complex nested structures
 - No data loss
 - Format-specific features preserved
 - Precise conversions
 
 **Cons:**
+
 - Much more complex implementation
 - Harder to understand and maintain
 - Performance overhead
@@ -155,11 +165,13 @@ public sealed class FormatRegistry
 **Description:** Stream-based processing without loading everything into memory
 
 **Pros:**
+
 - Lower memory usage
 - Can handle very large files
 - Better performance for simple operations
 
 **Cons:**
+
 - Can't support random access (e.g., lookups)
 - Harder to implement diff/scan operations
 - More complex API

@@ -33,9 +33,9 @@ What other options were evaluated?
 
 | ADR | Title | Status | Date |
 |-----|-------|--------|------|
-| [0001](./0001-multi-format-architecture.md) | Multi-Format Architecture | Accepted | 2024-12-06 |
-| [0002](./0002-format-registry-pattern.md) | Format Registry Pattern | Accepted | 2024-12-06 |
-| [0003](./0003-service-layer-design.md) | Service Layer Design | Accepted | 2024-12-06 |
+| [0001](./0001-multi-format-architecture.md) | Multi-Format Architecture | Accepted | 2025-12-06 |
+| [0002](./0002-format-registry-pattern.md) | Format Registry Pattern | Accepted | 2025-12-06 |
+| [0003](./0003-service-layer-design.md) | Service Layer Design | Accepted | 2025-12-06 |
 
 ## Creating a New ADR
 

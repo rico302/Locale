@@ -21,7 +21,7 @@ Complete guide for setting up and developing Locale.
 ### Required
 
 - **.NET SDK 10.0** or later
-  - Download from: https://dotnet.microsoft.com/download
+  - Download from: <https://dotnet.microsoft.com/download>
   - Verify: `dotnet --version` should show 10.0.x or later
 
 ### Recommended
@@ -223,6 +223,7 @@ dotnet test --collect:"XPlat Code Coverage"
 ```
 
 Coverage reports are in:
+
 ```
 TestResults/{guid}/coverage.cobertura.xml
 ```
@@ -230,11 +231,13 @@ TestResults/{guid}/coverage.cobertura.xml
 ### View Coverage Report
 
 Install ReportGenerator:
+
 ```bash
 dotnet tool install -g dotnet-reportgenerator-globaltool
 ```
 
 Generate HTML report:
+
 ```bash
 reportgenerator \
   -reports:"**/coverage.cobertura.xml" \
@@ -275,6 +278,7 @@ dotnet test --parallel
 ### VS Code
 
 Create `.vscode/launch.json`:
+
 ```json
 {
   "version": "0.2.0",
@@ -350,6 +354,7 @@ dotnet build /p:AnalysisLevel=latest
 ### EditorConfig
 
 Project uses `.editorconfig` for consistent formatting:
+
 - Indent: 4 spaces
 - Line endings: CRLF
 - Nullable reference types: enabled
@@ -389,6 +394,7 @@ Project uses `.editorconfig` for consistent formatting:
 ### Adding a New Format
 
 1. **Create format handler:**
+
    ```csharp
    // src/Locale/Formats/MyFormat.cs
    public sealed class MyFormatLocalizationFormat : LocalizationFormatBase
@@ -409,6 +415,7 @@ Project uses `.editorconfig` for consistent formatting:
    ```
 
 2. **Register in FormatRegistry:**
+
    ```csharp
    // src/Locale/Formats/FormatRegistry.cs
    private static FormatRegistry CreateDefault()
@@ -421,6 +428,7 @@ Project uses `.editorconfig` for consistent formatting:
    ```
 
 3. **Add tests:**
+
    ```csharp
    // tests/Locale.Tests/Formats/MyFormatTests.cs
    public class MyFormatLocalizationFormatTests
@@ -443,6 +451,7 @@ Project uses `.editorconfig` for consistent formatting:
    ```
 
 4. **Add sample file:**
+
    ```bash
    # samples/locales/en.myext
    ```
@@ -454,6 +463,7 @@ Project uses `.editorconfig` for consistent formatting:
 ### Adding a New Service
 
 1. **Create service class:**
+
    ```csharp
    // src/Locale/Services/MyService.cs
    public sealed class MyService
@@ -471,6 +481,7 @@ Project uses `.editorconfig` for consistent formatting:
    ```
 
 2. **Create options and report:**
+
    ```csharp
    public sealed class MyOptions
    {
@@ -485,6 +496,7 @@ Project uses `.editorconfig` for consistent formatting:
    ```
 
 3. **Add CLI command:**
+
    ```csharp
    // src/Locale.CLI/Commands/MyCommand.cs
    public sealed class MyCommand : Command<MyCommand.Settings>
@@ -499,6 +511,7 @@ Project uses `.editorconfig` for consistent formatting:
    ```
 
 4. **Register command:**
+
    ```csharp
    // src/Locale.CLI/Program.cs
    config.AddCommand<MyCommand>("my")
@@ -506,6 +519,7 @@ Project uses `.editorconfig` for consistent formatting:
    ```
 
 5. **Add tests:**
+
    ```csharp
    // tests/Locale.Tests/Services/MyServiceTests.cs
    ```
@@ -513,6 +527,7 @@ Project uses `.editorconfig` for consistent formatting:
 ### Adding a New Translation Provider
 
 1. **Add to enum:**
+
    ```csharp
    // src/Locale/Services/TranslateService.cs
    public enum TranslationProvider
@@ -523,6 +538,7 @@ Project uses `.editorconfig` for consistent formatting:
    ```
 
 2. **Implement translation:**
+
    ```csharp
    private async Task<string> TranslateWithMyProviderAsync(...)
    {
@@ -531,6 +547,7 @@ Project uses `.editorconfig` for consistent formatting:
    ```
 
 3. **Update switch statement:**
+
    ```csharp
    var translated = options.Provider switch
    {
@@ -551,12 +568,14 @@ Project uses `.editorconfig` for consistent formatting:
 ### 1. Update Version
 
 Update version in all `.csproj` files:
+
 ```xml
 <Version>0.0.12</Version>
 <AssemblyVersion>0.0.12</AssemblyVersion>
 ```
 
 And in `npm/package.json`:
+
 ```json
 {
   "version": "0.0.12"
@@ -566,8 +585,9 @@ And in `npm/package.json`:
 ### 2. Update CHANGELOG
 
 Add release notes to [CHANGELOG.md](../CHANGELOG.md):
+
 ```markdown
-## [0.0.12] - 2024-12-07
+## [0.0.12] - 2025-12-07
 
 ### Added
 - New feature X
@@ -590,6 +610,7 @@ git push origin v0.0.12
 ### 4. GitHub Release
 
 GitHub Actions automatically:
+
 1. Builds release artifacts
 2. Publishes to NuGet
 3. Creates GitHub release
@@ -634,14 +655,17 @@ dotnet test --verbosity detailed
 ### IDE Issues
 
 **Visual Studio:**
+
 - Tools → Options → Environment → Preview Features
 - Enable "Use previews of the .NET SDK"
 
 **VS Code:**
+
 - Install C# extension
 - Reload window after installing SDK
 
 **Rider:**
+
 - File → Invalidate Caches / Restart
 
 ### Package Restore Issues
@@ -668,7 +692,7 @@ dotnet restore --verbosity detailed
 
 ## Getting Help
 
-- **Issues:** https://github.com/Taiizor/Locale/issues
-- **Discussions:** https://github.com/Taiizor/Locale/discussions
-- **Discord:** https://discord.gg/nxG977byXb
-- **Email:** taiizor@vegalya.com
+- **Issues:** <https://github.com/Taiizor/Locale/issues>
+- **Discussions:** <https://github.com/Taiizor/Locale/discussions>
+- **Discord:** <https://discord.gg/nxG977byXb>
+- **Email:** <taiizor@vegalya.com>

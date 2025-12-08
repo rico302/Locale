@@ -4,11 +4,12 @@
 
 Accepted
 
-Date: 2024-12-06
+Date: 2025-12-06
 
 ## Context
 
 The Locale library needs to provide high-level operations beyond simple format parsing:
+
 - **Scanning**: Compare base and target cultures to find gaps
 - **Diffing**: Compare two files and report differences
 - **Checking**: Validate files against configurable rules
@@ -18,6 +19,7 @@ The Locale library needs to provide high-level operations beyond simple format p
 - **Watching**: Monitor files for changes and re-run operations
 
 **Requirements:**
+
 - Clean separation between core logic and format handling
 - Reusable business logic across CLI and library usage
 - Testable without UI concerns
@@ -32,6 +34,7 @@ The Locale library needs to provide high-level operations beyond simple format p
 Implement a **Service Layer** pattern with dedicated service classes for each major operation:
 
 **Service Classes:**
+
 1. `ScanService` - Scan and compare localization files
 2. `DiffService` - Compare two files
 3. `CheckService` - Validate against rules
@@ -41,6 +44,7 @@ Implement a **Service Layer** pattern with dedicated service classes for each ma
 7. `WatchService` - Monitor file changes
 
 **Design Principles:**
+
 ```csharp
 public sealed class ScanService
 {
@@ -77,6 +81,7 @@ public sealed class ScanReport
 ```
 
 **Key Design Principles:**
+
 1. **Single Responsibility**: Each service handles one operation
 2. **Options Pattern**: Configuration via options objects
 3. **Constructor Injection**: Dependencies injected via constructor
@@ -127,11 +132,13 @@ public static class LocaleUtilities
 ```
 
 **Pros:**
+
 - Simple API
 - No instances needed
 - Easy to call
 
 **Cons:**
+
 - Not testable (can't mock)
 - Global state issues
 - Hard to inject dependencies
@@ -154,12 +161,14 @@ var report = Locale.Scan()
 ```
 
 **Pros:**
+
 - Very readable
 - Discoverable API
 - Method chaining
 - Popular pattern
 
 **Cons:**
+
 - More complex implementation
 - Mutable builder state
 - Thread safety concerns
@@ -185,11 +194,13 @@ public sealed class LocaleService
 ```
 
 **Pros:**
+
 - Single entry point
 - Simple discovery
 - Fewer classes
 
 **Cons:**
+
 - Violates Single Responsibility Principle
 - Large class with many methods
 - Harder to test
@@ -219,12 +230,14 @@ var report = command.Execute();
 ```
 
 **Pros:**
+
 - Very flexible
 - Can queue/log commands
 - Undo/redo support possible
 - Command history
 
 **Cons:**
+
 - Overly complex for this use case
 - More boilerplate
 - Undo/redo not needed
@@ -236,6 +249,7 @@ var report = command.Execute();
 ## Implementation Examples
 
 **Service with Default Constructor:**
+
 ```csharp
 public sealed class ScanService
 {
@@ -252,6 +266,7 @@ public sealed class ScanService
 ```
 
 **Options Object:**
+
 ```csharp
 public sealed class ScanOptions
 {
@@ -264,6 +279,7 @@ public sealed class ScanOptions
 ```
 
 **Report Object:**
+
 ```csharp
 public sealed class ScanReport
 {
@@ -274,6 +290,7 @@ public sealed class ScanReport
 ```
 
 **Library Usage:**
+
 ```csharp
 var service = new ScanService();
 var report = service.Scan("./locales", new ScanOptions
@@ -285,6 +302,7 @@ var report = service.Scan("./locales", new ScanOptions
 ```
 
 **DI Container Registration:**
+
 ```csharp
 services.AddSingleton<FormatRegistry>(FormatRegistry.Default);
 services.AddScoped<ScanService>();
@@ -297,6 +315,7 @@ services.AddScoped<WatchService>();
 ```
 
 **Async Operations:**
+
 ```csharp
 public sealed class TranslateService
 {
@@ -313,6 +332,7 @@ public sealed class TranslateService
 ## Testing Benefits
 
 **Unit Testing Services:**
+
 ```csharp
 [Fact]
 public void Scan_WithMissingKeys_ReportsMissing()
@@ -336,6 +356,7 @@ public void Scan_WithMissingKeys_ReportsMissing()
 ```
 
 **Mocking Dependencies:**
+
 ```csharp
 var mockRegistry = new Mock<FormatRegistry>();
 var service = new ScanService(mockRegistry.Object);
